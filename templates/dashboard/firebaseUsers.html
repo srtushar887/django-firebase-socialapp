@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">Users</h5>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>User List</h5>
+        
+        </div>
+        <div class="card-body table-border-style">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>User Photo</th>
+                            <th>User Email</th>
+                            <th>User Phone</th>
+                            <th>Action</th>
+                        
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>
+                                <img src="{{user.photo_url}}" style="border-radius: 100%;" width="50px" height="50px">
+                            </td>
+                            <td>{{user.email}}</td>
+                            <td>{{user.phone_number}}</td>
+                            <td>                                
+                                <a href="{url 'deleteusers' user.uid}">
+                                    <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                </a>
+                            </td>
+            
+                        </tr>
+                        {% endfor %}
+                        
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    

@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">FireBase Users Posts</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h4>Post Details</h4>
+        </div>
+        <div class="card-body table-border-style">
+            <div class="row">
+                <div class="col-md-6">
+                    
+                    <div class="card" style="padding: 20px;">
+                   <ul class="user_post">
+                       <li><span class="user_post_lebel">Title:</span> {{data.title}}</li>
+                       <li><span class="user_post_lebel">Name:</span> {{data.name}}</li>
+                       <li><span class="user_post_lebel">Location:</span>{{data.location}}</li>
+                       <li><span class="user_post_lebel">Likes:</span> {{likes}}</li>
+                   </ul>
+                </div>
+                {% if commets.len > 0 %}
+                    <div class="card" style="padding: 20px;">
+                       {% for comment in commets %}
+                        <div class="row"  > 
+                            <div class="col-sm-2"><img src="{{comment.photo}}" style="border-radius: 100%;" width="50px" height="50px"></div> 
+                            <div class="col-sm-10">
+                                <h5 class="user_post">{{comment.name}}</h5>
+                                <p>{{comment.comment}}</p>
+                            </div>  
+                            <hr style="color:  #c7c7c7 0.5px; width: 80%;">
+                        </div>   
+                       {% endfor %}
+                    </div>
+                    {% endif %}
+                </div>
+                <div class="col-md-6" style="display: flex; justify-content: center;">
+                    <div class="card">
+                        <video src="{{data.videourl}}" width="400px" controls></video>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}
+    
