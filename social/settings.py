@@ -26,7 +26,7 @@ SECRET_KEY = 'dzjtr9^i-msmla7_jg13n&fxyicvrm*4hd88a-32x63^u*n9i('
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['murmuring-brook-55333.herokuapp.com','127.0.0.1',]
 
 
 # Application definition
@@ -78,11 +78,12 @@ WSGI_APPLICATION = 'social.wsgi.application'
 
 DATABASES = {
     'default': {
-         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'social_new_app',
-        'USER' : 'postgres',
-        'PASSWORD' : '147258369',
-        'HOST' : 'localhost'
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd10bbimvduu2fo',
+        'HOST' : 'ec2-54-152-175-141.compute-1.amazonaws.com',
+        'PORT' : '5432'
+        'USER' : 'ozcxhqvveghuzw',
+        'PASSWORD' : '066f8b8ffca1bff9c9c538071e38664f866ba9b234188431f116db0d79e10633',
     }
 }
 
