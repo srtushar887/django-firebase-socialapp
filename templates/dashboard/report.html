@@ -1,0 +1,62 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">FireBase Video Report</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Report List</h5>
+        
+        </div>
+        <div class="card-body table-border-style">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Comment</th>
+                            <th>Name</th>
+                            <th>Reason</th>
+                            
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for report in data %}
+                          <tr>
+                              <td>{{report.comment}}</td>
+                              <td>{{report.name}}</td>
+                              <td>{{report.reason}}</td>
+                            
+                          </tr>
+
+
+
+                        {% endfor %}
+                        
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+{% endblock content %}
+    

@@ -1,0 +1,152 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+    
+<div class="page-header">
+    <div class="page-block">
+        <div class="row align-items-center">
+            <div class="col-md-12">
+                <div class="page-header-title">
+                    <h5 class="m-b-10">FireBase Categories</h5>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="col-xl-12">
+    <div class="card">
+        <div class="card-header">
+            <h5>Category List</h5>
+            <button class="btn btn-success btn-sm pull-right" data-toggle="modal" data-target="#createcategory">Craete New Category</button>
+        </div>
+        <div class="card-body table-border-style">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                        <tr>
+                            <th>Category Name</th>
+                            <th>Action</th>
+                            
+                        
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for cat in data %}
+                          <tr>
+                              <td>{{cat.category_name}}</td>
+                              <td>
+                                <button class="btn btn-primary btn-sm" data-toggle="modal" data-target="#updatecat{{cat.docid}}"><i class="fas fa-eye"></i></button>
+                                <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletecat{{cat.docid}}"><i class="fas fa-trash"></i></button>
+                         
+                                    
+
+                        </td>
+                          </tr>
+
+
+
+
+                          <div class="modal fade" id="deletecat{{cat.docid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">Delete Category</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <form action="{% url 'deletecategory' %}" method="POST">
+                                   {% csrf_token %}
+                                <div class="modal-body">
+                                    are you sure to delete this category ?
+                                      <input type="hidden" value="{{ cat.docid}}" name="catdeleteid">
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Delete</button>
+                                </div>
+                            </form>
+                              </div>
+                            </div>
+                          </div>
+
+
+
+                          <div class="modal fade" id="updatecat{{cat.docid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">Update Post</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <form action="{% url 'updatecategory' %}" method="POST">
+                                   {% csrf_token %}
+                                <div class="modal-body">
+                                    <div class="row">
+                                        <div class="from-group col-md-12">
+                                            <label>Category Name</label>
+                                            <br>
+                                          <input class="from-control" name="category_name" value="{{cat.category_name}}">
+                                          <input type="hidden" value="{{ cat.docid}}" name="catdeleteid">
+                                        </div>
+                                      </div>
+
+                                  
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Update</button>
+                                </div>
+                            </form>
+                              </div>
+                            </div>
+                          </div>
+
+                        {% endfor %}
+                        
+                    
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="createcategory" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLongTitle">Create Category</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <form action="{% url 'categorysave' %}" method="POST">
+            {% csrf_token %}
+        <div class="modal-body">
+          <div class="row">
+            <div class="from-group col-md-12">
+                <label>Category Name</label>
+                <br>
+              <input class="from-control" name="category_name">
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+    </form>
+      </div>
+    </div>
+  </div>
+
+
+{% endblock content %}
+    
