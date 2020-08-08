@@ -44,11 +44,11 @@
                             <td>{{user.email}}</td>
                             <td>{{user.phone_number}}</td>
                             <td>                                
-                                <a href="{url 'deleteusers' user.uid}">
+                                <a href="{% url 'deleteusers' user.uid %}">
                                     <button class="btn btn-danger btn-sm"><i class="fas fa-trash"></i></button>
                                 </a>
                             </td>
-            
+                            
                         </tr>
                         {% endfor %}
                         
