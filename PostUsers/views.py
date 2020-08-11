@@ -168,7 +168,7 @@ def videoreport(request):
     else:
         return redirect('login')
 
-delete_report = db.collection('categories')
+delete_report = db.collection('report')
 def deletereport(request):
     if request.user.is_authenticated:
         if request.method == 'POST':
