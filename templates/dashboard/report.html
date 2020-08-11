@@ -30,6 +30,7 @@
                             <th>Comment</th>
                             <th>Name</th>
                             <th>Reason</th>
+                            <th>Action</th>
                             
                         
                         </tr>
@@ -40,8 +41,36 @@
                               <td>{{report.comment}}</td>
                               <td>{{report.name}}</td>
                               <td>{{report.reason}}</td>
+                              <td>
+                                  <button class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deletereport{{report.docid}}"><i class="fas fa-trash"></i></button>
+                              </td>
                             
                           </tr>
+
+
+                          <div class="modal fade" id="deletereport{{report.docid}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                              <div class="modal-content">
+                                <div class="modal-header">
+                                  <h5 class="modal-title" id="exampleModalLongTitle">Delete Report</h5>
+                                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                  </button>
+                                </div>
+                                <form action="{% url 'deletereport' %}" method="POST">
+                                   {% csrf_token %}
+                                <div class="modal-body">
+                                  are your to delete this report ?
+                                  <input type="hidden" value="{{ report.docid}}" name="reportdeleteid">
+                                </div>
+                                <div class="modal-footer">
+                                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                  <button type="submit" class="btn btn-primary">Delete</button>
+                                </div>
+                            </form>
+                              </div>
+                            </div>
+                          </div>
 
 
 

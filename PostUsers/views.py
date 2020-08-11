@@ -67,7 +67,7 @@ def postview(request,post_id):
             comment = i.to_dict()
         if comment['id']==postdetail['id']:
             comment_list.append(comment)
-        print(comment_list)
+        
         return render (request, "dashboard/postdetails.html", {"data": postdetail,"likes":len(like_list),"commets":comment_list})
 
 
@@ -165,6 +165,17 @@ def videoreport(request):
             case_list1.append(stored)
             return render(request,'dashboard/report.html',{"data": case_list1})
             
+    else:
+        return redirect('login')
+
+delete_report = db.collection('categories')
+def deletereport(request):
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            reportdelid = request.POST['reportdeleteid']
+            getData = delete_report.document(reportdelid).get()
+            getData.reference.delete()
+            return redirect('videoreport')
     else:
         return redirect('login')
             

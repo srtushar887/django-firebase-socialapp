@@ -14,7 +14,8 @@ urlpatterns = [
     path('category/update/',views.updatecategory,name="updatecategory"),
     path('category/delete/',views.deletecategory,name="deletecategory"),
     # video report
-     path('video/reports',views.videoreport,name="videoreport"),
+    path('video/reports',views.videoreport,name="videoreport"),
+    path('report/delete',views.deletereport,name="deletereport"),
 
 
 ]
