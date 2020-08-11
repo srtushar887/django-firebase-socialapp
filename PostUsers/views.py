@@ -34,7 +34,6 @@ def deleteusers(request,uid):
 
 
 docfile = db.collection('post')
-
 def userposts(request):
     if request.user.is_authenticated:
         getData = docfile.get()
@@ -160,11 +159,10 @@ def videoreport(request):
         getData = docfilereport.get()
         case_list1 = []
         for i in getData:
-            stored = i.to_dict()
-            stored['docid']=i.id
-            case_list1.append(stored)
-            return render(request,'dashboard/report.html',{"data": case_list1})
-            
+            stored1 = i.to_dict()
+            stored1['docid']=i.id
+            case_list1.append(stored1)
+        return render(request,'dashboard/report.html',{"data": case_list1})        
     else:
         return redirect('login')
 
@@ -175,6 +173,7 @@ def deletereport(request):
             reportdelid = request.POST['reportdeleteid']
             getData = delete_report.document(reportdelid).get()
             getData.reference.delete()
+            # print(getData.id)
             return redirect('videoreport')
     else:
         return redirect('login')
